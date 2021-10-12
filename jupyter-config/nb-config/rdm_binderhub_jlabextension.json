@@ -1,0 +1,7 @@
+{
+  "NotebookApp": {
+    "nbserver_extensions": {
+      "rdm_binderhub_jlabextension": true
+    }
+  }
+}

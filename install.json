@@ -1,0 +1,5 @@
+{
+  "packageManager": "python",
+  "packageName": "rdm_binderhub_jlabextension",
+  "uninstallInstructions": "Use your Python package manager (pip, conda, etc.) to uninstall the package rdm_binderhub_jlabextension"
+}
