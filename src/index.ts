@@ -10,6 +10,8 @@ import { ToolbarButton } from '@jupyterlab/apputils';
 import { ITranslator } from '@jupyterlab/translation';
 import { showDialog, Dialog } from '@jupyterlab/apputils';
 
+import logo from './images/GRDM_logo_horizon.svg';
+
 import { requestAPI } from './handler';
 
 const DIALOG_TITLE = 'Sync to GakuNin RDM'
@@ -114,10 +116,6 @@ const plugin: JupyterFrontEndPlugin<void> = {
     const { defaultBrowser: browser } = factory;
 
     // Add a launcher toolbar item.
-    const svg = `
-<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-   <circle cx="8" cy="8" r="8"/>
-</svg>`;
     const sync = new ToolbarButton({
       onClick: () => {
         if (sync.hasClass('rdm-binderhub-disabled')) {
@@ -134,7 +132,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
       label: trans.__(''),
       icon: new LabIcon({
         name: 'Sync to GRDM',
-        svgstr: svg,
+        svgstr: logo,
       }),
     });
     browser.toolbar.addItem('sync_to_grdm', sync);
