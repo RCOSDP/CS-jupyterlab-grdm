@@ -7,12 +7,12 @@ ENV_PREFIX = 'RDM_BINDERHUB_'
 ENV_ITEMS = ['FROM_PATH', 'TO_PATH', 'USE_RSYNC']
 
 def get_default_config():
+    yyyymmdd = datetime.now().strftime('%Y%m%d')
     if 'JUPYTERHUB_USER' in os.environ and 'JUPYTERHUB_SERVER_NAME' in os.environ:
         jh_user = os.environ['JUPYTERHUB_USER']
         jh_service_name = os.environ['JUPYTERHUB_SERVER_NAME']
-        to_path = f'/mnt/rdm/osfstorage/result-{jh_user}-{jh_service_name}/'
+        to_path = f'/mnt/rdm/osfstorage/result-{jh_user}-{yyyymmdd}-{jh_service_name}/'
     else:
-        yyyymmdd = datetime.now().strftime('%Y%m%d')
         to_path = f'/mnt/rdm/osfstorage/result-{yyyymmdd}/'
     return dict(FROM_PATH='~/result', TO_PATH=to_path, USE_RSYNC=False)
 
