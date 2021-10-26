@@ -22,6 +22,18 @@ def _jupyter_labextension_paths():
 from . import server
 
 
+# nbextension
+def _jupyter_nbextension_paths():
+    return [dict(section="tree",
+                 src="nbextension",
+                 dest="rdm_binderhub_jlabextension",
+                 require="rdm_binderhub_jlabextension/main"),
+            dict(section="notebook",
+                 src="nbextension",
+                 dest="rdm_binderhub_jlabextension",
+                 require="rdm_binderhub_jlabextension/main")]
+
+
 def _jupyter_server_extension_points():
     return [{
         "module": "rdm_binderhub_jlabextension"
