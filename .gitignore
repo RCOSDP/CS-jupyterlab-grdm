@@ -110,3 +110,5 @@ dmypy.json
 
 # OSX files
 .DS_Store
+
+rdm_binderhub_jlabextension/nbextension/GRDM_logo_horizon.svg

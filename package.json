@@ -32,7 +32,7 @@
     "build:prod": "jlpm run clean && jlpm run build:lib && jlpm run build:labextension",
     "build:labextension": "jupyter labextension build .",
     "build:labextension:dev": "jupyter labextension build --development True .",
-    "build:lib": "tsc && mkdir -p lib/images && cp src/images/*.svg lib/images/",
+    "build:lib": "tsc && mkdir -p lib/images && cp src/images/*.svg lib/images/ && cp src/images/*.svg rdm_binderhub_jlabextension/nbextension/",
     "clean": "jlpm run clean:lib",
     "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
     "clean:labextension": "rimraf rdm_binderhub_jlabextension/labextension",

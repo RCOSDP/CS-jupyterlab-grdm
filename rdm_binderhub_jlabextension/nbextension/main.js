@@ -15,6 +15,11 @@ define([
         return utils.url_path_join(baseUrl, 'rdm-binderhub/files');
     }
 
+    function get_icon_url() {
+        var baseUrl = utils.get_body_data('baseUrl');
+        return utils.url_path_join(baseUrl, 'nbextensions/rdm_binderhub_jlabextension/GRDM_logo_horizon.svg')
+    }
+
     function refresh_button(syncing) {
         $('#rdm-binderhub-sync-button')
             .removeClass('btn-danger')
@@ -99,7 +104,9 @@ define([
 
     function generate_button() {
         var button = $('<button></button>')
-            .append($('<i></i>').addClass('fa fa-upload'))
+            .append($('<img></img>')
+                .attr('src', get_icon_url())
+                .attr('height', 16))
             .append($('<span></span>').text(' Sync to RDM'))
             .attr('id', 'rdm-binderhub-sync-button')
             .addClass('btn btn-default btn-sm')
