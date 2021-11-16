@@ -1,6 +1,6 @@
 # rdm_binderhub_jlabextension
 
-[![Github Actions Status](https://github.com/yacchin1205/rdm_binderhub_jlabextension/workflows/Build/badge.svg)](https://github.com/yacchin1205/rdm_binderhub_jlabextension/actions/workflows/build.yml)[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/yacchin1205/rdm_binderhub_jlabextension/main?urlpath=lab)
+[![Github Actions Status](https://github.com/RCOSDP/CS-jupyterlab-grdm/workflows/Build/badge.svg)](https://github.com/RCOSDP/CS-jupyterlab-grdm/actions/workflows/build.yml)[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/RCOSDP/CS-jupyterlab-grdm/main?urlpath=lab)
 
 JupyterLab extension for GakuNin RDM.
 
