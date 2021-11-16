@@ -4,6 +4,7 @@ from pathlib import Path
 
 from tornado.ioloop import IOLoop
 
+from .config import save_env_to_home
 from ._version import __version__
 
 HERE = Path(__file__).parent.resolve()
@@ -50,6 +51,7 @@ def _load_jupyter_server_extension(server_app):
     """
     server.register_routes(server_app, server_app.web_app)
     IOLoop.current().add_callback(server.task_worker.watch_queue)
+    save_env_to_home()
     server_app.log.info("Registered GRDM extension at URL path /rdm-binderhub-jlabextension")
 
 # For backward compatibility with notebook server - useful for Binder/JupyterHub

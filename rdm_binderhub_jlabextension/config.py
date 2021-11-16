@@ -1,3 +1,4 @@
+import json
 import os
 import yaml
 from datetime import datetime
@@ -5,6 +6,14 @@ from datetime import datetime
 
 ENV_PREFIX = 'RDM_BINDERHUB_'
 ENV_ITEMS = ['FROM_PATH', 'TO_PATH', 'USE_RSYNC']
+
+def save_env_to_home():
+    config_path = os.path.expanduser('~/.config/grdm/env.json')
+    config_dir, _ = os.path.split(config_path)
+    if not os.path.isdir(config_dir):
+        os.makedirs(config_dir)
+    with open(config_path, 'w') as f:
+        f.write(json.dumps(dict([(k, v) for k, v in os.environ.items() if k.startswith('JUPYTERHUB_')])))
 
 def get_default_config():
     yyyymmdd = datetime.now().strftime('%Y%m%d')

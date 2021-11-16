@@ -36,6 +36,8 @@ _(sys.executable, "-m", "jupyter", "labextension", "develop", "--overwrite", "."
 # verify the environment the extension didn't break anything
 _(sys.executable, "-m", "pip", "check")
 
+_("jupyter", "server", "extension", "enable", "rdm_binderhub_jlabextension")
+
 # list the extensions
 _("jupyter", "server", "extension", "list")
 
