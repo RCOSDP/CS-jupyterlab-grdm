@@ -14,4 +14,4 @@ build_cmd = "build:prod"
 npm = ["jlpm"]
 
 [tool.check-manifest]
-ignore = ["rdm_binderhub_jlabextension/labextension/**", "yarn.lock", ".*", "package-lock.json"]
+ignore = ["rdm_binderhub_jlabextension/labextension/**", "rdm_binderhub_jlabextension/nbextension/GRDM_logo_horizon.svg", "yarn.lock", ".*", "package-lock.json"]
