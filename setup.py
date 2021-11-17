@@ -56,6 +56,7 @@ setup_args = dict(
     packages=setuptools.find_packages(),
     install_requires=[
         "jupyter_server>=1.6,<2",
+        "notebook",
         "pyyaml",
     ],
     zip_safe=False,
