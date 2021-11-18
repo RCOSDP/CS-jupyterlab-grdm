@@ -64,10 +64,18 @@ jobs:
         pip uninstall -y myextension jupyterlab
         rm -rf myextension
 
+        npm pack
+        mv rdm-binderhub-jlabextension-*.tgz myextension-nodejs.tgz
+
     - uses: actions/upload-artifact@v2
       with:
         name: myextension-sdist
         path: myextension.tar.gz
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: myextension-nodejs
+        path: myextension-nodejs.tgz
 
   draft_release:
     needs: build
@@ -79,6 +87,9 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: myextension-sdist
+    - uses: actions/download-artifact@v2
+      with:
+        name: myextension-nodejs
     - name: release
       uses: actions/create-release@v1
       id: create_release
@@ -98,4 +109,13 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: myextension.tar.gz
         asset_name: rdm_binderhub_jlabextension-${{ github.ref }}.tar.gz
+        asset_content_type: application/gzip
+    - name: upload nodejs package
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: myextension-nodejs.tgz
+        asset_name: rdm-binderhub-jlabextension-${{ github.ref }}.tgz
         asset_content_type: application/gzip
