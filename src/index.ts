@@ -26,6 +26,7 @@ interface IFilesLastResult {
 }
 
 interface IFilesResponse {
+  to_dir: string | null;
   syncing: boolean;
   action: IFilesAction;
   last_result: IFilesLastResult;
@@ -50,6 +51,10 @@ function formatShortWarnMessage(action: IFilesAction) {
 function formatWarnMessage(action: IFilesAction) {
   const message = formatShortWarnMessage(action);
   return message + ': ' + (action.args || []).join(', ');
+}
+
+function formatErrorMessage(error: Error) {
+  return `The request to the server failed: ${error}`;
 }
 
 async function reloadButtonState(button: ToolbarButton) {
@@ -79,7 +84,7 @@ async function reloadButtonState(button: ToolbarButton) {
   return resp;
 }
 
-async function startSync(button: ToolbarButton) {
+async function performSync(button: ToolbarButton) {
   const resp = await requestAPI<IFilesResponse>('files?action=sync');
   const currentAction = resp.action;
   if (!resp.syncing && currentAction && currentAction.id !== 'started') {
@@ -95,6 +100,19 @@ async function startSync(button: ToolbarButton) {
   console.log('Started');
   await reloadButtonState(button);
   return resp;
+}
+
+async function startSync(button: ToolbarButton) {
+  try {
+    return await performSync(button);
+  } catch (error) {
+    await showDialog({
+      title: DIALOG_TITLE,
+      body: formatErrorMessage(error),
+      buttons: [Dialog.okButton()]
+    });
+    throw error;
+  }
 }
 
 /**
@@ -133,6 +151,14 @@ const plugin: JupyterFrontEndPlugin<void> = {
         name: 'Sync to GRDM',
         svgstr: logo
       })
+    });
+    sync.addClass('rdm-binderhub-disabled');
+    requestAPI<IFilesResponse>('files').then(data => {
+      console.log('Loaded', data);
+      if (!data.to_dir) {
+        return;
+      }
+      sync.removeClass('rdm-binderhub-disabled');
     });
     browser.toolbar.addItem('sync_to_grdm', sync);
   }
