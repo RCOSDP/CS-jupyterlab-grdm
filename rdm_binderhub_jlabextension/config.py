@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 ENV_PREFIX = 'RDM_BINDERHUB_'
-ENV_ITEMS = ['FROM_PATH', 'TO_PATH', 'USE_RSYNC']
+ENV_ITEMS = ['FROM_PATH', 'TO_PATH', 'TO_DIR', 'USE_RSYNC']
 
 def save_env_to_home():
     config_path = os.path.expanduser('~/.config/grdm/env.json')
@@ -17,13 +17,14 @@ def save_env_to_home():
 
 def get_default_config():
     yyyymmdd = datetime.now().strftime('%Y%m%d')
+    to_dir = '/mnt/rdm/osfstorage/'
     if 'JUPYTERHUB_USER' in os.environ and 'JUPYTERHUB_SERVER_NAME' in os.environ:
         jh_user = os.environ['JUPYTERHUB_USER']
         jh_service_name = os.environ['JUPYTERHUB_SERVER_NAME']
-        to_path = f'/mnt/rdm/osfstorage/result-{jh_user}-{yyyymmdd}-{jh_service_name}/'
+        to_path = os.path.join(to_dir, f'result-{jh_user}-{yyyymmdd}-{jh_service_name}/')
     else:
-        to_path = f'/mnt/rdm/osfstorage/result-{yyyymmdd}/'
-    return dict(FROM_PATH='~/result', TO_PATH=to_path, USE_RSYNC=False)
+        to_path = os.path.join(to_dir,f'/mnt/rdm/osfstorage/result-{yyyymmdd}/')
+    return dict(FROM_PATH='~/result', TO_PATH=to_path, TO_DIR=to_dir, USE_RSYNC=False)
 
 def get_config():
     default_config = get_default_config()
@@ -31,7 +32,7 @@ def get_config():
                                  os.path.expanduser('~/.rdm-binderhub-config'))
     if os.path.exists(config_path):
         with open(config_path, 'r') as f:
-            config = yaml.load(f.read())
+            config = yaml.safe_load(f.read())
     else:
         config = {}
     r = {}

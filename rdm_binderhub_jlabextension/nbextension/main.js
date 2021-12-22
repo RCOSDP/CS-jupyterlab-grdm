@@ -64,6 +64,10 @@ define([
                       .attr('title', data.last_result.stderr);
                   return;
                 }
+                if (!data.to_dir) {
+                  console.log('No GRDM folder');
+                  return;
+                }
                 refresh_button(data.syncing);
                 if (!data.syncing) {
                     return;
@@ -110,6 +114,7 @@ define([
             .append($('<span></span>').text(' Sync to RDM'))
             .attr('id', 'rdm-binderhub-sync-button')
             .addClass('btn btn-default btn-sm')
+            .attr('disabled', true)
             .click(function() {
                 refresh_button(true);
                 $.ajax({

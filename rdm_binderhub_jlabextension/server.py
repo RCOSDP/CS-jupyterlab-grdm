@@ -22,10 +22,16 @@ def register_routes(nb_server_app, web_app):
 
 
 class FilesHandler(IPythonHandler):
-    def initialize(self, from_path, to_path, use_rsync):
+    def initialize(self, from_path, to_path, to_dir, use_rsync):
         self.from_path = from_path
         self.to_path = to_path
+        self.to_dir = to_dir
         self.use_rsync = use_rsync
+
+    def _get_to_path(self):
+        if os.path.exists(self.to_dir):
+            return self.to_dir
+        return None
 
     @tornado.web.authenticated
     async def get(self):
@@ -45,6 +51,7 @@ class FilesHandler(IPythonHandler):
                     'stderr': stderr.decode('utf8', errors='ignore') if stderr is not None else None,
                 } if task_worker.performed is not None else None
         resp = {
+            'to_dir': self._get_to_path(),
             'syncing': syncing,
             'last_result': last_result,
             'action': None,
