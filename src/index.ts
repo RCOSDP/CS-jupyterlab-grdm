@@ -11,6 +11,7 @@ import { showDialog, Dialog } from '@jupyterlab/apputils';
 import logo from './images/GRDM_logo_horizon.svg';
 
 import { requestAPI } from './handler';
+import { getNoGRDMMessage } from './messages';
 
 const DIALOG_TITLE = 'Sync to GakuNin RDM';
 
@@ -139,6 +140,19 @@ const plugin: JupyterFrontEndPlugin<void> = {
         if (sync.hasClass('rdm-binderhub-disabled')) {
           return;
         }
+        if (sync.hasClass('rdm-binderhub-no-grdm')) {
+          const { title, body } = getNoGRDMMessage();
+          showDialog({
+            title: title,
+            body: body,
+            buttons: [Dialog.okButton()]
+          }).catch(reason => {
+            console.error(
+              `The rdm_binderhub_jlabextension server extension failed.\n${reason}`
+            );
+          });
+          return;
+        }
         startSync(sync).catch(reason => {
           console.error(
             `The rdm_binderhub_jlabextension server extension failed.\n${reason}`
@@ -153,12 +167,14 @@ const plugin: JupyterFrontEndPlugin<void> = {
       })
     });
     sync.addClass('rdm-binderhub-disabled');
+    sync.addClass('rdm-binderhub-no-grdm');
     requestAPI<IFilesResponse>('files').then(data => {
       console.log('Loaded', data);
+      sync.removeClass('rdm-binderhub-disabled');
       if (!data.to_dir) {
         return;
       }
-      sync.removeClass('rdm-binderhub-disabled');
+      sync.removeClass('rdm-binderhub-no-grdm');
     });
     browser.toolbar.addItem('sync_to_grdm', sync);
   }

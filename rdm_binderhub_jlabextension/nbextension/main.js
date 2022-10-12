@@ -1,9 +1,11 @@
 define([
   'jquery',
   'base/js/utils',
+  'base/js/dialog',
 ], function(
   $,
   utils,
+  jsdialog,
 ) {
     "use strict";
 
@@ -28,7 +30,7 @@ define([
             .attr('title', '')
             .attr('disabled', syncing);
         $('#rdm-binderhub-sync-button > span')
-            .text(syncing ? ' Syncing to RDM...' : ' Sync to RDM');
+            .text(syncing ? ' Syncing to GRDM...' : ' Sync to GRDM');
     }
 
     function format_short_warn_message(action) {
@@ -66,8 +68,41 @@ define([
                 }
                 if (!data.to_dir) {
                   console.log('No GRDM folder');
+                  $('#rdm-binderhub-sync-button')
+                      .attr('disabled', false)
+                      .click(function() {
+                          var message = get_no_grdm_message();
+                          jsdialog.modal({
+                              title: message.title,
+                              body: $('<div></div>').html(message.body),
+                              buttons: {
+                                  "OK" : {},
+                              }
+                          });
+                      });
                   return;
                 }
+                $('#rdm-binderhub-sync-button').click(function() {
+                    refresh_button(true);
+                    $.ajax({
+                        url: get_api_url() + '?action=sync',
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                    })
+                        .done(function(data) {
+                            console.log('Done', data);
+                            var current_action = data.action;
+                            if (!data.syncing && current_action && current_action.id !== 'started') {
+                              console.warn('Sync failed', current_action);
+                              set_warn_message(format_short_warn_message(current_action))
+                                  .attr('title', format_warn_message(current_action));
+                              return;
+                            }
+                            reload_button_state();
+                        })
+                        .fail(show_error);
+                });
                 refresh_button(data.syncing);
                 if (!data.syncing) {
                     return;
@@ -75,6 +110,20 @@ define([
                 setTimeout(reload_button_state, 1000);
             })
             .fail(show_error);
+    }
+
+    function get_no_grdm_message() {
+        var url = 'https://support.rdm.nii.ac.jp/usermanual/50/';
+        if (/^ja/i.test(navigator.language)) {
+            return {
+                title: 'GRDM連携環境で実行されていません',
+                body: 'この環境はGRDM連携環境ではありません。<br><a href="' + url + '" target="_blank">GRDMと連携した環境</a>でこのExtensionを実行することで、Jupyter Notebookで作成したデータをGRDMに保存することができます。',
+            }
+        }
+        return {
+            title: 'Not running in a GRDM linked environment',
+            body: 'The current environment is not a GRDM linked environment.<br>By running this Extension in <a href="' + url + '" target="_blank">an environment linked to GRDM</a>, data created by Jupyter Notebook can be stored to GRDM.',
+        };
     }
 
     function show_error(jqXHR, textStatus, errorThrown) {
@@ -111,31 +160,10 @@ define([
             .append($('<img></img>')
                 .attr('src', get_icon_url())
                 .attr('height', 16))
-            .append($('<span></span>').text(' Sync to RDM'))
+            .append($('<span></span>').text(' Sync to GRDM'))
             .attr('id', 'rdm-binderhub-sync-button')
             .addClass('btn btn-default btn-sm')
-            .attr('disabled', true)
-            .click(function() {
-                refresh_button(true);
-                $.ajax({
-                    url: get_api_url() + '?action=sync',
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                })
-                    .done(function(data) {
-                        console.log('Done', data);
-                        var current_action = data.action;
-                        if (!data.syncing && current_action && current_action.id !== 'started') {
-                          console.warn('Sync failed', current_action);
-                          set_warn_message(format_short_warn_message(current_action))
-                              .attr('title', format_warn_message(current_action));
-                          return;
-                        }
-                        reload_button_state();
-                    })
-                    .fail(show_error);
-            })
+            .attr('disabled', true);
         return $('<span></span>').attr('id', 'rdm_sync_widget').append(button);
     }
 

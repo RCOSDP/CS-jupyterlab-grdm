@@ -1,5 +1,5 @@
 Type: Jupyter Notebook Extension
-Name: RDM binderhub extension
+Name: GRDM binderhub extension
 Description: "An extension for binderhub with GakuNin RDM"
 Main: main.js
 Compatibility: 5.x 6.x
