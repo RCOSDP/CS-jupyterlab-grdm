@@ -61,6 +61,9 @@ setup_args = dict(
     ],
     zip_safe=False,
     include_package_data=True,
+    entry_points={
+        "jupyterlab.locale": ["rdm_binderhub_jlabextension = rdm_binderhub_jlabextension"]
+    },
     python_requires=">=3.6",
     platforms="Linux, Mac OS X, Windows",
     keywords=["Jupyter", "JupyterLab", "JupyterLab3"],

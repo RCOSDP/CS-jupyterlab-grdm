@@ -131,7 +131,9 @@ const plugin: JupyterFrontEndPlugin<void> = {
     console.log(
       'JupyterLab extension rdm-binderhub-jlabextension is activated! - 2'
     );
-    const trans = translator.load('jupyterlab');
+    const trans = translator.load('rdm_binderhub_jlabextension');
+    const title = trans.__('Sync to RDM');
+    console.log('TranslatorBundle', title, trans);
     const { defaultBrowser: browser } = factory;
 
     // Add a launcher toolbar item.
@@ -141,7 +143,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
           return;
         }
         if (sync.hasClass('rdm-binderhub-no-grdm')) {
-          const { title, body } = getNoGRDMMessage();
+          const { title, body } = getNoGRDMMessage(trans);
           showDialog({
             title: title,
             body: body,
@@ -159,10 +161,10 @@ const plugin: JupyterFrontEndPlugin<void> = {
           );
         });
       },
-      tooltip: trans.__('Sync to GRDM'),
+      tooltip: title,
       label: trans.__(''),
       icon: new LabIcon({
-        name: 'Sync to GRDM',
+        name: title,
         svgstr: logo
       })
     });

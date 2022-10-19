@@ -52,7 +52,7 @@ def _load_jupyter_server_extension(server_app):
     server.register_routes(server_app, server_app.web_app)
     IOLoop.current().add_callback(server.task_worker.watch_queue)
     save_env_to_home()
-    server_app.log.info("Registered GRDM extension at URL path /rdm-binderhub")
+    server_app.log.info("Registered GakuNin RDM extension at URL path /rdm-binderhub")
 
 # For backward compatibility with notebook server - useful for Binder/JupyterHub
 load_jupyter_server_extension = _load_jupyter_server_extension

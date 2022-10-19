@@ -1,34 +1,38 @@
 import React from 'react';
+import { TranslationBundle } from '@jupyterlab/translation';
 
-export function getNoGRDMMessage() {
+export function getNoGRDMMessage(trans: TranslationBundle) {
+  const title = trans.__('Not running in a GakuNin RDM linked environment');
+  const descLang = trans.__('NoRDMMessageLang');
   const url = 'https://support.rdm.nii.ac.jp/usermanual/50/';
-  if (/^ja/i.test(navigator.language)) {
+  if (descLang === 'ja') {
+    // To return JSX Element, checking language as NoRDMMessageLang
     return {
-      title: 'GRDM連携環境で実行されていません',
+      title,
       body: (
         <div>
-          この環境はGRDM連携環境ではありません。
+          この環境はGakuNin RDM連携環境ではありません。
           <br />
           <a href={url} style={{ color: '#106ba3' }} target="_blank">
-            GRDMと連携した環境
+            GakuNin RDMと連携した環境
           </a>
           でこのExtensionを実行することで、Jupyter
-          Notebookで作成したデータをGRDMに保存することができます。
+          Notebookで作成したデータをGakuNin RDMに保存することができます。
         </div>
       )
     };
   }
   return {
-    title: 'Not running in a GRDM linked environment',
+    title,
     body: (
       <div>
-        The current environment is not a GRDM linked environment.
+        The current environment is not a GakuNin RDM linked environment.
         <br />
         By running this Extension in{' '}
         <a href={url} style={{ color: '#106ba3' }} target="_blank">
-          an environment linked to GRDM
+          an environment linked to GakuNin RDM
         </a>
-        , data created by Jupyter Notebook can be stored to GRDM.
+        , data created by Jupyter Notebook can be stored to GakuNin RDM.
       </div>
     )
   };

@@ -30,7 +30,7 @@ define([
             .attr('title', '')
             .attr('disabled', syncing);
         $('#rdm-binderhub-sync-button > span')
-            .text(syncing ? ' Syncing to GRDM...' : ' Sync to GRDM');
+            .text(syncing ? ' Syncing to RDM...' : ' Sync to RDM');
     }
 
     function format_short_warn_message(action) {
@@ -67,7 +67,7 @@ define([
                   return;
                 }
                 if (!data.to_dir) {
-                  console.log('No GRDM folder');
+                  console.log('No GakuNin RDM folder');
                   $('#rdm-binderhub-sync-button')
                       .attr('disabled', false)
                       .click(function() {
@@ -160,7 +160,7 @@ define([
             .append($('<img></img>')
                 .attr('src', get_icon_url())
                 .attr('height', 16))
-            .append($('<span></span>').text(' Sync to GRDM'))
+            .append($('<span></span>').text(' Sync to RDM'))
             .attr('id', 'rdm-binderhub-sync-button')
             .addClass('btn btn-default btn-sm')
             .attr('disabled', true);
