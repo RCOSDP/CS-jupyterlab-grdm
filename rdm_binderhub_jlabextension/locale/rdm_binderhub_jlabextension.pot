@@ -1,0 +1,51 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: rdm_binderhub_jlabextension 0.1.0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/index.ts:135 src/index.ts:136 src/index.ts:144 src/index.ts:162 src/index.ts:163 src/index.ts:166
+msgid "Sync to RDM"
+msgstr ""
+
+#: src/index.ts:35
+msgid "Sync to GakuNin RDM"
+msgstr ""
+
+#: src/index.ts:38 src/index.ts:43
+msgid "No `result` directory"
+msgstr ""
+
+#: src/index.ts:41 src/index.ts:46
+msgid "`result` is not a directory"
+msgstr ""
+
+#: src/index.ts:44 src/index.ts:49
+msgid "`result` has no files"
+msgstr ""
+
+#: src/index.ts:47 src/index.ts:52
+msgid "Already syncing"
+msgstr ""
+
+#: src/index.ts:58 src/index.ts:63
+msgid "The request to the server failed:"
+msgstr ""
+
+#: src/index.ts:74
+msgid "Command failed:"
+msgstr ""
+
+#: src/index.ts:76 src/index.ts:84
+msgid "Finished"
+msgstr ""
+
+#: src/messages.tsx:5
+msgid "Not running in a GakuNin RDM linked environment"
+msgstr ""
+
+#: src/messages.tsx:6
+msgid "NoRDMMessageLang"
+msgstr ""

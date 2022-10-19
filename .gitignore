@@ -63,7 +63,7 @@ coverage.xml
 
 # Translations
 *.mo
-*.pot
+rdm_binderhub_jlabextension/locale/ja_JP/LC_MESSAGES/rdm_binderhub_jlabextension.json
 
 # Scrapy stuff:
 .scrapy

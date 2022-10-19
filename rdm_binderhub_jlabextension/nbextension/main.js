@@ -40,6 +40,9 @@ define([
         if (action.id === 'not_directory') {
           return '`result` is not a directory';
         }
+        if (action.id === 'empty_directory') {
+            return '`result` has no files';
+        }
         if (action.id === 'already_syncing') {
           return 'Already syncing';
         }
@@ -116,13 +119,13 @@ define([
         var url = 'https://support.rdm.nii.ac.jp/usermanual/50/';
         if (/^ja/i.test(navigator.language)) {
             return {
-                title: 'GRDM連携環境で実行されていません',
-                body: 'この環境はGRDM連携環境ではありません。<br><a href="' + url + '" target="_blank">GRDMと連携した環境</a>でこのExtensionを実行することで、Jupyter Notebookで作成したデータをGRDMに保存することができます。',
+                title: 'GakuNin RDM連携環境で実行されていません',
+                body: 'この環境はGakuNin RDM連携環境ではありません。<br><a href="' + url + '" target="_blank">GakuNin RDMと連携した環境</a>でこのExtensionを実行することで、Jupyter Notebookで作成したデータをGakuNin RDMに保存することができます。',
             }
         }
         return {
-            title: 'Not running in a GRDM linked environment',
-            body: 'The current environment is not a GRDM linked environment.<br>By running this Extension in <a href="' + url + '" target="_blank">an environment linked to GRDM</a>, data created by Jupyter Notebook can be stored to GRDM.',
+            title: 'Not running in a GakuNin RDM linked environment',
+            body: 'The current environment is not a GakuNin RDM linked environment.<br>By running this Extension in <a href="' + url + '" target="_blank">an environment linked to GakuNin RDM</a>, data created by Jupyter Notebook can be stored to GakuNin RDM.',
         };
     }
 

@@ -26,5 +26,4 @@ global-exclude .ipynb_checkpoints
 
 include rdm_binderhub_jlabextension/nbextension/*
 
-recursive-include rdm_binderhub_jlabextension/locale *.json
-recursive-include rdm_binderhub_jlabextension/locale *.mo
+graft rdm_binderhub_jlabextension/locale
