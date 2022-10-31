@@ -5,14 +5,13 @@ import {
 import { IFileBrowserFactory } from '@jupyterlab/filebrowser';
 import { LabIcon } from '@jupyterlab/ui-components';
 import { ToolbarButton } from '@jupyterlab/apputils';
-import { ITranslator } from '@jupyterlab/translation';
+import { ITranslator, TranslationBundle } from '@jupyterlab/translation';
 import { showDialog, Dialog } from '@jupyterlab/apputils';
 
 import logo from './images/GRDM_logo_horizon.svg';
 
 import { requestAPI } from './handler';
-
-const DIALOG_TITLE = 'Sync to GakuNin RDM';
+import { getNoGRDMMessage } from './messages';
 
 interface IFilesAction {
   id: string;
@@ -32,38 +31,49 @@ interface IFilesResponse {
   last_result: IFilesLastResult;
 }
 
-function formatShortWarnMessage(action: IFilesAction) {
+function getDialogTitle(trans: TranslationBundle) {
+  return trans.__('Sync to GakuNin RDM');
+}
+
+function formatShortWarnMessage(
+  trans: TranslationBundle,
+  action: IFilesAction
+) {
   if (action.id === 'no_content') {
-    return 'No `result` directory';
+    return trans.__('No `result` directory');
   }
   if (action.id === 'not_directory') {
-    return '`result` is not a directory';
+    return trans.__('`result` is not a directory');
   }
   if (action.id === 'empty_directory') {
-    return '`result` has no files';
+    return trans.__('`result` has no files');
   }
   if (action.id === 'already_syncing') {
-    return 'Already syncing';
+    return trans.__('Already syncing');
   }
   return action.id;
 }
 
-function formatWarnMessage(action: IFilesAction) {
-  const message = formatShortWarnMessage(action);
+function formatWarnMessage(trans: TranslationBundle, action: IFilesAction) {
+  const message = formatShortWarnMessage(trans, action);
   return message + ': ' + (action.args || []).join(', ');
 }
 
-function formatErrorMessage(error: Error) {
-  return `The request to the server failed: ${error}`;
+function formatErrorMessage(trans: TranslationBundle, error: Error) {
+  const message = trans.__('The request to the server failed:');
+  return `${message} ${error}`;
 }
 
-async function reloadButtonState(button: ToolbarButton) {
+async function reloadButtonState(
+  trans: TranslationBundle,
+  button: ToolbarButton
+) {
   const resp = await requestAPI<IFilesResponse>('files');
   if (!resp.syncing && resp.last_result && resp.last_result.exit_code !== 0) {
     console.error('Sync error', resp.last_result);
-    const message = 'Command failed';
+    const message = trans.__('Command failed:');
     await showDialog({
-      title: DIALOG_TITLE,
+      title: getDialogTitle(trans),
       body: `${message} ${resp.last_result.stderr}`,
       buttons: [Dialog.okButton()]
     });
@@ -71,44 +81,44 @@ async function reloadButtonState(button: ToolbarButton) {
     return resp;
   }
   if (!resp.syncing) {
-    const message = 'Finished';
+    const message = trans.__('Finished');
     await showDialog({
-      title: DIALOG_TITLE,
+      title: getDialogTitle(trans),
       body: message,
       buttons: [Dialog.okButton()]
     });
     button.removeClass('rdm-binderhub-disabled');
     return resp;
   }
-  setTimeout(() => reloadButtonState(button), 1000);
+  setTimeout(() => reloadButtonState(trans, button), 1000);
   return resp;
 }
 
-async function performSync(button: ToolbarButton) {
+async function performSync(trans: TranslationBundle, button: ToolbarButton) {
   const resp = await requestAPI<IFilesResponse>('files?action=sync');
   const currentAction = resp.action;
   if (!resp.syncing && currentAction && currentAction.id !== 'started') {
     console.warn('Sync failed', currentAction);
     await showDialog({
-      title: DIALOG_TITLE,
-      body: formatWarnMessage(currentAction),
+      title: getDialogTitle(trans),
+      body: formatWarnMessage(trans, currentAction),
       buttons: [Dialog.okButton()]
     });
     return resp;
   }
   button.addClass('rdm-binderhub-disabled');
   console.log('Started');
-  await reloadButtonState(button);
+  await reloadButtonState(trans, button);
   return resp;
 }
 
-async function startSync(button: ToolbarButton) {
+async function startSync(trans: TranslationBundle, button: ToolbarButton) {
   try {
-    return await performSync(button);
+    return await performSync(trans, button);
   } catch (error) {
     await showDialog({
-      title: DIALOG_TITLE,
-      body: formatErrorMessage(error),
+      title: getDialogTitle(trans),
+      body: formatErrorMessage(trans, error),
       buttons: [Dialog.okButton()]
     });
     throw error;
@@ -130,7 +140,9 @@ const plugin: JupyterFrontEndPlugin<void> = {
     console.log(
       'JupyterLab extension rdm-binderhub-jlabextension is activated! - 2'
     );
-    const trans = translator.load('jupyterlab');
+    const trans = translator.load('rdm_binderhub_jlabextension');
+    const title = trans.__('Sync to RDM');
+    console.log('TranslatorBundle', title, trans);
     const { defaultBrowser: browser } = factory;
 
     // Add a launcher toolbar item.
@@ -139,26 +151,41 @@ const plugin: JupyterFrontEndPlugin<void> = {
         if (sync.hasClass('rdm-binderhub-disabled')) {
           return;
         }
-        startSync(sync).catch(reason => {
+        if (sync.hasClass('rdm-binderhub-no-grdm')) {
+          const { title, body } = getNoGRDMMessage(trans);
+          showDialog({
+            title: title,
+            body: body,
+            buttons: [Dialog.okButton()]
+          }).catch(reason => {
+            console.error(
+              `The rdm_binderhub_jlabextension server extension failed.\n${reason}`
+            );
+          });
+          return;
+        }
+        startSync(trans, sync).catch(reason => {
           console.error(
             `The rdm_binderhub_jlabextension server extension failed.\n${reason}`
           );
         });
       },
-      tooltip: trans.__('Sync to GRDM'),
+      tooltip: title,
       label: trans.__(''),
       icon: new LabIcon({
-        name: 'Sync to GRDM',
+        name: title,
         svgstr: logo
       })
     });
     sync.addClass('rdm-binderhub-disabled');
+    sync.addClass('rdm-binderhub-no-grdm');
     requestAPI<IFilesResponse>('files').then(data => {
       console.log('Loaded', data);
+      sync.removeClass('rdm-binderhub-disabled');
       if (!data.to_dir) {
         return;
       }
-      sync.removeClass('rdm-binderhub-disabled');
+      sync.removeClass('rdm-binderhub-no-grdm');
     });
     browser.toolbar.addItem('sync_to_grdm', sync);
   }
