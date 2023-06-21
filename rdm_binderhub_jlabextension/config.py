@@ -14,7 +14,13 @@ def save_env_to_home():
     if not os.path.isdir(config_dir):
         os.makedirs(config_dir)
     with open(config_path, 'w') as f:
-        f.write(json.dumps(dict([(k, v) for k, v in os.environ.items() if k.startswith('JUPYTERHUB_')])))
+        f.write(json.dumps(
+            dict([
+                (k, v)
+                for k, v in os.environ.items()
+                if k.startswith('JUPYTERHUB_') or k.startswith('BINDER_')
+            ])
+        ))
 
 def get_default_storage():
     """
