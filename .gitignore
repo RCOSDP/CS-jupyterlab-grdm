@@ -1,10 +1,15 @@
 *.bundle.*
 lib/
 node_modules/
+*.log
+.eslintcache
+.stylelintcache
 *.egg-info/
 .ipynb_checkpoints
 *.tsbuildinfo
 rdm_binderhub_jlabextension/labextension
+# Version file is handled by hatchling
+rdm_binderhub_jlabextension/_version.py
 
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
@@ -37,6 +42,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+**/LC_MESSAGES/*.json
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -56,6 +62,7 @@ htmlcov/
 .coverage.*
 .cache
 nosetests.xml
+coverage/
 coverage.xml
 *.cover
 .hypothesis/
@@ -63,7 +70,7 @@ coverage.xml
 
 # Translations
 *.mo
-rdm_binderhub_jlabextension/locale/ja_JP/LC_MESSAGES/rdm_binderhub_jlabextension.json
+*.pot
 
 # Scrapy stuff:
 .scrapy
@@ -111,4 +118,10 @@ dmypy.json
 # OSX files
 .DS_Store
 
-rdm_binderhub_jlabextension/nbextension/GRDM_logo_horizon.svg
+# Yarn cache
+.yarn/
+
+# SVG
+rdm_binderhub_jlabextension/nbextension/*.svg
+
+_temp_extension

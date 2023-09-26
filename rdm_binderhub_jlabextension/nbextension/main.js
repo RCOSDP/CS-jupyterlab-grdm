@@ -14,7 +14,7 @@ define([
 
     function get_api_url() {
         var baseUrl = utils.get_body_data('baseUrl');
-        return utils.url_path_join(baseUrl, 'rdm-binderhub/files');
+        return utils.url_path_join(baseUrl, 'rdm-binderhub-jlabextension/files');
     }
 
     function get_icon_url() {

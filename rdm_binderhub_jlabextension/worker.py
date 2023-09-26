@@ -3,7 +3,7 @@ from uuid import uuid4
 
 from tornado import gen
 from tornado.queues import Queue
-from notebook.base.handlers import log
+from jupyter_server.base.handlers import log
 
 from tornado.process import Subprocess
 from tornado.iostream import PipeIOStream

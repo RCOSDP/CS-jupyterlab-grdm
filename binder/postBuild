@@ -32,11 +32,18 @@ _(sys.executable, "-m", "pip", "check")
 # install the labextension
 _(sys.executable, "-m", "pip", "install", "-e", ".")
 _(sys.executable, "-m", "jupyter", "labextension", "develop", "--overwrite", ".")
+_(
+    sys.executable,
+    "-m",
+    "jupyter",
+    "server",
+    "extension",
+    "enable",
+    "rdm_binderhub_jlabextension",
+)
 
 # verify the environment the extension didn't break anything
 _(sys.executable, "-m", "pip", "check")
-
-_("jupyter", "server", "extension", "enable", "rdm_binderhub_jlabextension")
 
 # list the extensions
 _("jupyter", "server", "extension", "list")
@@ -44,9 +51,24 @@ _("jupyter", "server", "extension", "list")
 # initially list installed extensions to determine if there are any surprises
 _("jupyter", "labextension", "list")
 
-# Install notebook extension
-_("jupyter", "nbextension", "install", "--py", "rdm_binderhub_jlabextension", "--user")
-_("jupyter", "nbextension", "enable", "--py", "rdm_binderhub_jlabextension", "--user")
+# install nbclassic extension
+_(
+    "jupyter",
+    "nbclassic-extension",
+    "install",
+    "--py",
+    "--sys-prefix",
+    "rdm_binderhub_jlabextension",
+)
+_(
+    "jupyter",
+    "nbclassic-extension",
+    "enable",
+    "--py",
+    "--sys-prefix",
+    "rdm_binderhub_jlabextension",
+)
+
 
 print("JupyterLab with rdm_binderhub_jlabextension is ready to run with:\n")
 print("\tjupyter lab\n")

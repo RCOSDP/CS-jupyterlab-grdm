@@ -1,0 +1,19 @@
+{
+    "title": "rdm-binderhub-jlabextension",
+    "description": "JupyterLab extension for GakuNin RDM.",
+    "jupyter.lab.menus": {
+        "main": [
+            {
+                "id": "jp-mainmenu-file",
+                "items": [
+                    {
+                        "command": "rdm-binderhub-jlabextension:sync-to-grdm-menu",
+                        "rank": 10
+                    }
+                ]
+            }
+        ]
+    },
+    "additionalProperties": false,
+    "type": "object"
+}

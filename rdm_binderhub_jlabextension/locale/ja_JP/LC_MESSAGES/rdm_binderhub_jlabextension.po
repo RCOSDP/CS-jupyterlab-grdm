@@ -1,9 +1,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: rdm_binderhub_jlabextension 0.1.0\n"
+"Project-Id-Version: rdm_binderhub_jlabextension 0.0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-23 14:03+0900\n"
+"POT-Creation-Date: 2023-10-09 12:30+0900\n"
 "PO-Revision-Date: 2022-10-22 17:52+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ja_JP <LL@li.org>\n"
@@ -14,30 +14,39 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.10.3\n"
 
+msgctxt "schema"
+msgid "JupyterLab extension for GakuNin RDM."
+msgstr "GakuNin RDM用JupyterLab拡張"
+
+msgctxt "schema"
+msgid "rdm-binderhub-jlabextension"
+msgstr ""
+
+#: src/button.ts:106 src/button.ts:107 src/button.ts:126 src/button.ts:127
 #: src/index.ts:135 src/index.ts:136 src/index.ts:144 src/index.ts:162
 #: src/index.ts:163 src/index.ts:166
 msgid "Sync to RDM"
 msgstr "RDMと同期"
 
-#: src/index.ts:35
-msgid "Sync to GakuNin RDM"
-msgstr "GakuNin RDMと同期"
-
-#: src/index.ts:38 src/index.ts:43
+#: src/button.ts:31 src/button.ts:32 src/index.ts:38 src/index.ts:43
 msgid "No `result` directory"
 msgstr "`result` ディレクトリがありません"
 
-#: src/index.ts:41 src/index.ts:46
+#: src/button.ts:34 src/button.ts:35 src/index.ts:41 src/index.ts:46
 msgid "`result` is not a directory"
 msgstr "`result` はディレクトリではありません"
 
-#: src/index.ts:44 src/index.ts:49
+#: src/button.ts:37 src/button.ts:38 src/index.ts:44 src/index.ts:49
 msgid "`result` has no files"
 msgstr "`result` ディレクトリは空です"
 
-#: src/index.ts:47 src/index.ts:52
+#: src/button.ts:40 src/button.ts:41 src/index.ts:47 src/index.ts:52
 msgid "Already syncing"
 msgstr "すでに同期中です"
+
+#: src/button.ts:52 src/button.ts:80 src/index.ts:35
+msgid "Sync to GakuNin RDM"
+msgstr "GakuNin RDMと同期"
 
 #: src/index.ts:58 src/index.ts:63
 msgid "The request to the server failed:"
@@ -51,10 +60,29 @@ msgstr "コマンド実行に失敗しました:"
 msgid "Finished"
 msgstr "完了しました"
 
-#: src/messages.tsx:5
+#: src/messages.tsx:5 src/messages.tsx:6
 msgid "Not running in a GakuNin RDM linked environment"
 msgstr "GakuNin RDM連携環境で実行されていません"
 
-#: src/messages.tsx:6
-msgid "NoRDMMessageLang"
-msgstr "ja"
+#: src/messages.tsx:8
+msgid ""
+"\n"
+"  <div>\n"
+"    The current environment is not a GakuNin RDM linked environment.\n"
+"    <br />\n"
+"    By running this Extension in\n"
+"    <a href=\"%1\" style=\"color: #106ba3;\" target=\"_blank\">\n"
+"      an environment linked to GakuNin RDM\n"
+"    </a>\n"
+"    , data created by Jupyter Notebook can be stored to GakuNin RDM.\n"
+"  </div>\n"
+msgstr ""
+"\n"
+"  <div>\n"
+"   この環境はGakuNin RDM連携環境ではありません。\n"
+"    <br />\n"
+"    <a href=\"%1\" style=\"color: #106ba3;\" target=\"_blank\">\n"
+"      GakuNin RDMと連携した環境\n"
+"    </a>\n"
+"    でこのExtensionを実行することで、Jupyter Notebookで作成したデータをGakuNin RDMに保存することができます。\n"
+"  </div>\n"

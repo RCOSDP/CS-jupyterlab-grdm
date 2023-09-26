@@ -1,27 +1,15 @@
 import os
 
 import tornado.web
-from notebook.base.handlers import IPythonHandler
+from jupyter_server.base.handlers import APIHandler
 
-from .config import get_config
 from .worker import TaskWorker
 
 
 task_worker = TaskWorker.get_instance()
 
 
-def register_routes(nb_server_app, web_app):
-    from notebook.utils import url_path_join
-
-    host_pattern = '.*$'
-    handler_options = get_config()
-    handlers = [(url_path_join(web_app.settings['base_url'], 'rdm-binderhub', 'files'),
-                 FilesHandler,
-                 handler_options)]
-    web_app.add_handlers(host_pattern, handlers)
-
-
-class FilesHandler(IPythonHandler):
+class FilesHandler(APIHandler):
     def initialize(self, from_path, to_path, to_dir, use_rsync):
         self.from_path = from_path
         self.to_path = to_path
