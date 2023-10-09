@@ -2,10 +2,6 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
-- TEST
+- Made Migration to JupyterLab 4.x
 
 <!-- <END NEW CHANGELOG ENTRY> -->
-
-# OLD logs
-
-- TEST

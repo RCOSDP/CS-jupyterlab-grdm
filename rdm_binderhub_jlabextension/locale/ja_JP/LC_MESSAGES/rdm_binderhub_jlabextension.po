@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rdm_binderhub_jlabextension 0.0.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-09 12:30+0900\n"
+"POT-Creation-Date: 2023-10-09 19:51+0900\n"
 "PO-Revision-Date: 2022-10-22 17:52+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: ja_JP <LL@li.org>\n"
@@ -22,49 +22,47 @@ msgctxt "schema"
 msgid "rdm-binderhub-jlabextension"
 msgstr ""
 
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:129
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:149
 #: src/button.ts:106 src/button.ts:107 src/button.ts:126 src/button.ts:127
-#: src/index.ts:135 src/index.ts:136 src/index.ts:144 src/index.ts:162
-#: src/index.ts:163 src/index.ts:166
+#: src/button.ts:129 src/button.ts:149 src/index.ts:135 src/index.ts:136
+#: src/index.ts:144 src/index.ts:162 src/index.ts:163 src/index.ts:166
 msgid "Sync to RDM"
 msgstr "RDMと同期"
 
-#: src/button.ts:31 src/button.ts:32 src/index.ts:38 src/index.ts:43
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:35 src/button.ts:31
+#: src/button.ts:32 src/button.ts:35 src/index.ts:38 src/index.ts:43
 msgid "No `result` directory"
 msgstr "`result` ディレクトリがありません"
 
-#: src/button.ts:34 src/button.ts:35 src/index.ts:41 src/index.ts:46
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:38 src/button.ts:34
+#: src/button.ts:35 src/button.ts:38 src/index.ts:41 src/index.ts:46
 msgid "`result` is not a directory"
 msgstr "`result` はディレクトリではありません"
 
-#: src/button.ts:37 src/button.ts:38 src/index.ts:44 src/index.ts:49
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:41 src/button.ts:37
+#: src/button.ts:38 src/button.ts:41 src/index.ts:44 src/index.ts:49
 msgid "`result` has no files"
 msgstr "`result` ディレクトリは空です"
 
-#: src/button.ts:40 src/button.ts:41 src/index.ts:47 src/index.ts:52
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:44 src/button.ts:40
+#: src/button.ts:41 src/button.ts:44 src/index.ts:47 src/index.ts:52
 msgid "Already syncing"
 msgstr "すでに同期中です"
 
-#: src/button.ts:52 src/button.ts:80 src/index.ts:35
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:59
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:99 src/button.ts:52
+#: src/button.ts:59 src/button.ts:80 src/button.ts:99 src/index.ts:35
 msgid "Sync to GakuNin RDM"
 msgstr "GakuNin RDMと同期"
 
-#: src/index.ts:58 src/index.ts:63
-msgid "The request to the server failed:"
-msgstr "サーバーへのリクエストに失敗しました:"
-
-#: src/index.ts:74
-msgid "Command failed:"
-msgstr "コマンド実行に失敗しました:"
-
-#: src/index.ts:76 src/index.ts:84
-msgid "Finished"
-msgstr "完了しました"
-
-#: src/messages.tsx:5 src/messages.tsx:6
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/messages.tsx:11
+#: src/messages.tsx:5 src/messages.tsx:6 src/messages.tsx:11
 msgid "Not running in a GakuNin RDM linked environment"
 msgstr "GakuNin RDM連携環境で実行されていません"
 
-#: src/messages.tsx:8
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/messages.tsx:13
+#: src/messages.tsx:8 src/messages.tsx:13
 msgid ""
 "\n"
 "  <div>\n"
@@ -86,3 +84,16 @@ msgstr ""
 "    </a>\n"
 "    でこのExtensionを実行することで、Jupyter Notebookで作成したデータをGakuNin RDMに保存することができます。\n"
 "  </div>\n"
+
+#: src/button.ts:62
+#, fuzzy
+msgid "Command failed"
+msgstr "コマンド実行に失敗しました:"
+
+#: src/button.ts:72 src/index.ts:76 src/index.ts:84
+msgid "Finished"
+msgstr "完了しました"
+
+#: src/index.ts:74
+msgid "Command failed:"
+msgstr "コマンド実行に失敗しました:"

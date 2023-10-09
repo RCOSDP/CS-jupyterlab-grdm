@@ -9,13 +9,12 @@ import { ITranslator } from '@jupyterlab/translation';
 
 import { createSyncButton, addSyncMenu } from './button';
 
-
 function insertItemBefore(
   target: Toolbar<Widget>,
   name: string,
   item: Widget,
   originClassName: string,
-  timeout: number,
+  timeout: number
 ) {
   if (timeout < 0) {
     console.warn('Origin not found', originClassName);
@@ -25,7 +24,7 @@ function insertItemBefore(
   const children = new Array(...target.children())
     .map((element, index) => ({
       element,
-      index,
+      index
     }))
     .filter(({ element }) => element.node.classList.contains(originClassName));
   if (children.length > 0) {
@@ -35,8 +34,14 @@ function insertItemBefore(
   }
   const nextTimeout = 100;
   setTimeout(() => {
-    insertItemBefore(target, name, item, originClassName, timeout - nextTimeout);
-  }, nextTimeout)
+    insertItemBefore(
+      target,
+      name,
+      item,
+      originClassName,
+      timeout - nextTimeout
+    );
+  }, nextTimeout);
 }
 
 /**
@@ -63,7 +68,7 @@ const plugin: JupyterFrontEndPlugin<void> = {
       'rdm-binderhub-jlabextension:sync-to-grdm-button',
       sync,
       'jp-FileBrowser-filterBox',
-      1000, /*timeout*/
+      1000 /*timeout*/
     );
     addSyncMenu(trans, app.commands);
   }

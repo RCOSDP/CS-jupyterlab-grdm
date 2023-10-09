@@ -6,57 +6,45 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /schema/plugin.json:/description
+#: /dist/rdm_binderhub_jlabextension-0.3.0/schema/plugin.json:/description /schema/plugin.json:/description
 msgctxt "schema"
 msgid "JupyterLab extension for GakuNin RDM."
 msgstr ""
 
-#: /schema/plugin.json:/title
+#: /dist/rdm_binderhub_jlabextension-0.3.0/schema/plugin.json:/title /schema/plugin.json:/title
 msgctxt "schema"
 msgid "rdm-binderhub-jlabextension"
 msgstr ""
 
-#: src/button.ts:106 src/button.ts:107 src/button.ts:126 src/button.ts:127 src/index.ts:135 src/index.ts:136 src/index.ts:144 src/index.ts:162 src/index.ts:163 src/index.ts:166
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:129 dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:149 src/button.ts:106 src/button.ts:107 src/button.ts:126 src/button.ts:127 src/button.ts:129 src/button.ts:149 src/index.ts:135 src/index.ts:136 src/index.ts:144 src/index.ts:162 src/index.ts:163 src/index.ts:166
 msgid "Sync to RDM"
 msgstr ""
 
-#: src/button.ts:31 src/button.ts:32 src/index.ts:38 src/index.ts:43
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:35 src/button.ts:31 src/button.ts:32 src/button.ts:35 src/index.ts:38 src/index.ts:43
 msgid "No `result` directory"
 msgstr ""
 
-#: src/button.ts:34 src/button.ts:35 src/index.ts:41 src/index.ts:46
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:38 src/button.ts:34 src/button.ts:35 src/button.ts:38 src/index.ts:41 src/index.ts:46
 msgid "`result` is not a directory"
 msgstr ""
 
-#: src/button.ts:37 src/button.ts:38 src/index.ts:44 src/index.ts:49
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:41 src/button.ts:37 src/button.ts:38 src/button.ts:41 src/index.ts:44 src/index.ts:49
 msgid "`result` has no files"
 msgstr ""
 
-#: src/button.ts:40 src/button.ts:41 src/index.ts:47 src/index.ts:52
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:44 src/button.ts:40 src/button.ts:41 src/button.ts:44 src/index.ts:47 src/index.ts:52
 msgid "Already syncing"
 msgstr ""
 
-#: src/button.ts:52 src/button.ts:80 src/index.ts:35
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:59 dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:99 src/button.ts:52 src/button.ts:59 src/button.ts:80 src/button.ts:99 src/index.ts:35
 msgid "Sync to GakuNin RDM"
 msgstr ""
 
-#: src/index.ts:58 src/index.ts:63
-msgid "The request to the server failed:"
-msgstr ""
-
-#: src/index.ts:74
-msgid "Command failed:"
-msgstr ""
-
-#: src/index.ts:76 src/index.ts:84
-msgid "Finished"
-msgstr ""
-
-#: src/messages.tsx:5 src/messages.tsx:6
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/messages.tsx:11 src/messages.tsx:11 src/messages.tsx:5 src/messages.tsx:6
 msgid "Not running in a GakuNin RDM linked environment"
 msgstr ""
 
-#: src/messages.tsx:8
+#: dist/rdm_binderhub_jlabextension-0.3.0/src/messages.tsx:13 src/messages.tsx:13 src/messages.tsx:8
 msgid ""
 "\n"
 "  <div>\n"
@@ -68,4 +56,16 @@ msgid ""
 "    </a>\n"
 "    , data created by Jupyter Notebook can be stored to GakuNin RDM.\n"
 "  </div>\n"
+msgstr ""
+
+#: src/button.ts:62
+msgid "Command failed"
+msgstr ""
+
+#: src/button.ts:72 src/index.ts:76 src/index.ts:84
+msgid "Finished"
+msgstr ""
+
+#: src/index.ts:74
+msgid "Command failed:"
 msgstr ""

@@ -1,0 +1,47 @@
+{
+    "": {
+        "domain": "rdm_binderhub_jlabextension",
+        "language": "ja-JP",
+        "plural_forms": "nplurals=1; plural=0;",
+        "version": "0.0.0"
+    },
+    "\n  <div>\n    The current environment is not a GakuNin RDM linked environment.\n    <br />\n    By running this Extension in\n    <a href=\"%1\" style=\"color: #106ba3;\" target=\"_blank\">\n      an environment linked to GakuNin RDM\n    </a>\n    , data created by Jupyter Notebook can be stored to GakuNin RDM.\n  </div>\n": [
+        "\n  <div>\n   \u3053\u306e\u74b0\u5883\u306fGakuNin RDM\u9023\u643a\u74b0\u5883\u3067\u306f\u3042\u308a\u307e\u305b\u3093\u3002\n    <br />\n    <a href=\"%1\" style=\"color: #106ba3;\" target=\"_blank\">\n      GakuNin RDM\u3068\u9023\u643a\u3057\u305f\u74b0\u5883\n    </a>\n    \u3067\u3053\u306eExtension\u3092\u5b9f\u884c\u3059\u308b\u3053\u3068\u3067\u3001Jupyter Notebook\u3067\u4f5c\u6210\u3057\u305f\u30c7\u30fc\u30bf\u3092GakuNin RDM\u306b\u4fdd\u5b58\u3059\u308b\u3053\u3068\u304c\u3067\u304d\u307e\u3059\u3002\n  </div>\n"
+    ],
+    "Already syncing": [
+        "\u3059\u3067\u306b\u540c\u671f\u4e2d\u3067\u3059"
+    ],
+    "Command failed": [
+        "\u30b3\u30de\u30f3\u30c9\u5b9f\u884c\u306b\u5931\u6557\u3057\u307e\u3057\u305f:"
+    ],
+    "Command failed:": [
+        "\u30b3\u30de\u30f3\u30c9\u5b9f\u884c\u306b\u5931\u6557\u3057\u307e\u3057\u305f:"
+    ],
+    "Finished": [
+        "\u5b8c\u4e86\u3057\u307e\u3057\u305f"
+    ],
+    "No `result` directory": [
+        "`result` \u30c7\u30a3\u30ec\u30af\u30c8\u30ea\u304c\u3042\u308a\u307e\u305b\u3093"
+    ],
+    "Not running in a GakuNin RDM linked environment": [
+        "GakuNin RDM\u9023\u643a\u74b0\u5883\u3067\u5b9f\u884c\u3055\u308c\u3066\u3044\u307e\u305b\u3093"
+    ],
+    "Sync to GakuNin RDM": [
+        "GakuNin RDM\u3068\u540c\u671f"
+    ],
+    "Sync to RDM": [
+        "RDM\u3068\u540c\u671f"
+    ],
+    "The request to the server failed:": [
+        "\u30b5\u30fc\u30d0\u30fc\u3078\u306e\u30ea\u30af\u30a8\u30b9\u30c8\u306b\u5931\u6557\u3057\u307e\u3057\u305f:"
+    ],
+    "`result` has no files": [
+        "`result` \u30c7\u30a3\u30ec\u30af\u30c8\u30ea\u306f\u7a7a\u3067\u3059"
+    ],
+    "`result` is not a directory": [
+        "`result` \u306f\u30c7\u30a3\u30ec\u30af\u30c8\u30ea\u3067\u306f\u3042\u308a\u307e\u305b\u3093"
+    ],
+    "schema\u0004JupyterLab extension for GakuNin RDM.": [
+        "GakuNin RDM\u7528JupyterLab\u62e1\u5f35"
+    ]
+}

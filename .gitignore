@@ -42,7 +42,6 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-**/LC_MESSAGES/*.json
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -67,10 +66,6 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
-
-# Translations
-*.mo
-*.pot
 
 # Scrapy stuff:
 .scrapy
@@ -120,9 +115,6 @@ dmypy.json
 
 # Yarn cache
 .yarn/
-
-# SVG
-rdm_binderhub_jlabextension/nbextension/*.svg
 
 _temp_extension
 ui-tests/test-results/

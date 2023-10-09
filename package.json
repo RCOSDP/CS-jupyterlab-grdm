@@ -36,8 +36,8 @@
     "build": "jlpm build:lib && jlpm build:labextension:dev",
     "build:labextension": "jupyter labextension build .",
     "build:labextension:dev": "jupyter labextension build --development True .",
-    "build:lib": "tsc --sourceMap && mkdir -p lib/images && cp src/images/*.svg lib/images/ && cp src/images/*.svg rdm_binderhub_jlabextension/nbextension/",
-    "build:lib:prod": "tsc && mkdir -p lib/images && cp src/images/*.svg lib/images/ && cp src/images/*.svg rdm_binderhub_jlabextension/nbextension/",
+    "build:lib": "tsc --sourceMap && mkdir -p lib/images && cp src/images/*.svg lib/images/",
+    "build:lib:prod": "tsc && mkdir -p lib/images && cp src/images/*.svg lib/images/",
     "build:prod": "jlpm clean && jlpm build:lib:prod && jlpm build:labextension",
     "clean": "jlpm clean:lib",
     "clean:all": "jlpm clean:lib && jlpm clean:labextension && jlpm clean:lintcache",
@@ -56,7 +56,13 @@
     "stylelint:check": "stylelint --cache \"style/**/*.css\"",
     "watch": "run-p watch:src watch:labextension",
     "watch:labextension": "jupyter labextension watch .",
-    "watch:src": "tsc -w --sourceMap"
+    "watch:src": "tsc -w --sourceMap",
+    "prepare:resources": "jlpm prepare:images && jlpm prepare:translations",
+    "prepare:images": "cp src/images/*.svg rdm_binderhub_jlabextension/nbextension/",
+    "prepare:translations": "pip install jupyterlab-translate && jlpm extract:translations && jlpm update:translations && jlpm compile:translations",
+    "extract:translations": "jupyterlab-translate extract . rdm_binderhub_jlabextension",
+    "update:translations": "jupyterlab-translate update . rdm_binderhub_jlabextension -l ja_JP",
+    "compile:translations": "jupyterlab-translate compile . rdm_binderhub_jlabextension -l ja_JP"
   },
   "dependencies": {
     "@jupyterlab/application": "^4.0.6",

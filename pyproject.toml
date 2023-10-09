@@ -86,8 +86,5 @@ before-build-npm = [
 ]
 before-build-python = ["jlpm clean:all"]
 
-[tool.hatch.build.hooks.jupyter-translate]
-dependencies = ["jupyterlab-translate>=1.2.0"]
-
 [tool.check-wheel-contents]
 ignore = ["W002"]

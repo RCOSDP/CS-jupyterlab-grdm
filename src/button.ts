@@ -9,7 +9,6 @@ import logo from './images/GRDM_logo_horizon.svg';
 import { requestAPI } from './handler';
 import { getNoGRDMMessage } from './messages';
 
-
 interface IFilesAction {
   id: string;
   args: string[];
@@ -28,7 +27,10 @@ interface IFilesResponse {
   last_result: IFilesLastResult;
 }
 
-function formatShortWarnMessage(trans: TranslationBundle, action: IFilesAction) {
+function formatShortWarnMessage(
+  trans: TranslationBundle,
+  action: IFilesAction
+) {
   if (action.id === 'no_content') {
     return trans.__('No `result` directory');
   }
@@ -49,12 +51,15 @@ function formatWarnMessage(trans: TranslationBundle, action: IFilesAction) {
   return message + ': ' + (action.args || []).join(', ');
 }
 
-async function reloadButtonState(trans: TranslationBundle, button: ToolbarButton | null) {
+async function reloadButtonState(
+  trans: TranslationBundle,
+  button: ToolbarButton | null
+) {
   const resp = await requestAPI<IFilesResponse>('files');
   const title = trans.__('Sync to GakuNin RDM');
   if (!resp.syncing && resp.last_result && resp.last_result.exit_code !== 0) {
     console.error('Sync error', resp.last_result);
-    const message = 'Command failed';
+    const message = trans.__('Command failed');
     await showDialog({
       title,
       body: `${message} ${resp.last_result.stderr}`,
@@ -64,7 +69,7 @@ async function reloadButtonState(trans: TranslationBundle, button: ToolbarButton
     return resp;
   }
   if (!resp.syncing) {
-    const message = 'Finished';
+    const message = trans.__('Finished');
     await showDialog({
       title,
       body: message,
@@ -77,7 +82,10 @@ async function reloadButtonState(trans: TranslationBundle, button: ToolbarButton
   return resp;
 }
 
-async function startSync(trans: TranslationBundle, button: ToolbarButton | null) {
+async function startSync(
+  trans: TranslationBundle,
+  button: ToolbarButton | null
+) {
   const resp = await requestAPI<IFilesResponse>('files?action=sync');
   if (!resp.to_dir) {
     const { title, body } = getNoGRDMMessage(trans);
@@ -105,7 +113,10 @@ async function startSync(trans: TranslationBundle, button: ToolbarButton | null)
   return resp;
 }
 
-export function addSyncMenu(trans: TranslationBundle, commands: CommandRegistry) {
+export function addSyncMenu(
+  trans: TranslationBundle,
+  commands: CommandRegistry
+) {
   commands.addCommand('rdm-binderhub-jlabextension:sync-to-grdm-menu', {
     execute: () => {
       startSync(trans, null).catch(reason => {
@@ -119,7 +130,7 @@ export function addSyncMenu(trans: TranslationBundle, commands: CommandRegistry)
     icon: new LabIcon({
       name: 'Sync to RDM',
       svgstr: logo
-    }),
+    })
   });
 }
 
@@ -140,7 +151,7 @@ export function createSyncButton(trans: TranslationBundle): ToolbarButton {
     icon: new LabIcon({
       name: 'Sync to RDM',
       svgstr: logo
-    }),
+    })
   });
   return sync;
 }
