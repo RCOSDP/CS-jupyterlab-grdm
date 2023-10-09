@@ -15,6 +15,7 @@ class FilesHandler(APIHandler):
         self.to_path = to_path
         self.to_dir = to_dir
         self.use_rsync = use_rsync
+        self.log.info(f'Initialized: from_path={self.from_path}, to_path={self.to_path}, to_dir={self.to_dir}, use_rsync={self.use_rsync}')
 
     def _get_to_path(self):
         if os.path.exists(self.to_dir):

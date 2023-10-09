@@ -125,3 +125,4 @@ dmypy.json
 rdm_binderhub_jlabextension/nbextension/*.svg
 
 _temp_extension
+ui-tests/test-results/

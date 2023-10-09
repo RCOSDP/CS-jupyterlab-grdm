@@ -29,6 +29,9 @@
     "type": "git",
     "url": "https://github.com/RCOSDP/CS-jupyterlab-grdm.git"
   },
+  "workspaces": [
+    "ui-tests"
+  ],
   "scripts": {
     "build": "jlpm build:lib && jlpm build:labextension:dev",
     "build:labextension": "jupyter labextension build .",
@@ -180,7 +183,8 @@
     "node_modules",
     "dist",
     "coverage",
-    "**/*.d.ts"
+    "**/*.d.ts",
+    "ui-tests"
   ],
   "prettier": {
     "singleQuote": true,
