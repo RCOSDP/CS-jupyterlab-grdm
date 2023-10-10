@@ -19,7 +19,13 @@ jobs:
       - uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
         with:
           python_version: "3.9.x"
+      # Workaround for https://github.com/jupyter-server/jupyter_releaser/issues/529
+      - name: Fix jupyter_releaser
+        run: |
+          set -eux
+          pip install --upgrade 'git+https://github.com/yacchin1205/jupyter_releaser.git@fix/unexpected-npm-call'
       - name: Check Release
+        # Workaround for https://github.com/jupyter-server/jupyter_releaser/issues/529
         uses: jupyter-server/jupyter_releaser/.github/actions/check-release@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
