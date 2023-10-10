@@ -56,6 +56,14 @@ jobs:
 
         jupyter labextension list 2>&1 | grep -ie "rdm-binderhub-jlabextension.*OK"
         python -m jupyterlab.browser_check
+        # E2E Test by playwright
+        jlpm install
+        jlpm build:prod
+        cd ./ui-tests
+        jlpm install
+        jlpm playwright install
+        jlpm playwright test
+        cd ..
 
         pip install build
         python -m build --sdist
@@ -75,6 +83,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Install node
+      uses: actions/setup-node@v3
+      with:
+       node-version: 18
     - name: Install Python
       uses: actions/setup-python@v2
       with:
@@ -93,9 +105,3 @@ jobs:
         pip install jupyterlab
         jupyter labextension list 2>&1 | grep -ie "rdm-binderhub-jlabextension.*OK"
         python -m jupyterlab.browser_check --no-chrome-test
-        jlpm install
-        jlpm build:prod
-        cd ./ui-tests
-        jlpm install
-        jlpm playwright install
-        jlpm playwright test
