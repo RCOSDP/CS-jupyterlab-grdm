@@ -3,6 +3,7 @@ import { ToolbarButton } from '@jupyterlab/apputils';
 import { showDialog, Dialog } from '@jupyterlab/apputils';
 import { TranslationBundle } from '@jupyterlab/translation';
 import { CommandRegistry } from '@lumino/commands';
+import { Notification } from '@jupyterlab/apputils';
 
 import logo from './images/GRDM_logo_horizon.svg';
 
@@ -53,11 +54,13 @@ function formatWarnMessage(trans: TranslationBundle, action: IFilesAction) {
 
 async function reloadButtonState(
   trans: TranslationBundle,
-  button: ToolbarButton | null
+  button: ToolbarButton | null,
+  notificationId: string
 ) {
   const resp = await requestAPI<IFilesResponse>('files');
   const title = trans.__('Sync to GakuNin RDM');
   if (!resp.syncing && resp.last_result && resp.last_result.exit_code !== 0) {
+    Notification.dismiss(notificationId);
     console.error('Sync error', resp.last_result);
     const message = trans.__('Command failed');
     await showDialog({
@@ -69,6 +72,7 @@ async function reloadButtonState(
     return resp;
   }
   if (!resp.syncing) {
+    Notification.dismiss(notificationId);
     const message = trans.__('Finished');
     await showDialog({
       title,
@@ -78,7 +82,7 @@ async function reloadButtonState(
     button?.removeClass('rdm-binderhub-disabled');
     return resp;
   }
-  setTimeout(() => reloadButtonState(trans, button), 1000);
+  setTimeout(() => reloadButtonState(trans, button, notificationId), 1000);
   return resp;
 }
 
@@ -107,9 +111,16 @@ async function startSync(
     });
     return resp;
   }
+  const notificationId = Notification.emit(
+    trans.__('Syncing...'),
+    'in-progress',
+    {
+      autoClose: false
+    }
+  );
   button?.addClass('rdm-binderhub-disabled');
   console.log('Started');
-  await reloadButtonState(trans, button);
+  await reloadButtonState(trans, button, notificationId);
   return resp;
 }
 

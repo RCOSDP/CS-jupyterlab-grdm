@@ -32,6 +32,9 @@
     "Sync to RDM": [
         "RDM\u3068\u540c\u671f"
     ],
+    "Syncing...": [
+        "\u540c\u671f\u4e2d..."
+    ],
     "The request to the server failed:": [
         "\u30b5\u30fc\u30d0\u30fc\u3078\u306e\u30ea\u30af\u30a8\u30b9\u30c8\u306b\u5931\u6557\u3057\u307e\u3057\u305f:"
     ],
