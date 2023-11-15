@@ -1,10 +1,15 @@
 *.bundle.*
 lib/
 node_modules/
+*.log
+.eslintcache
+.stylelintcache
 *.egg-info/
 .ipynb_checkpoints
 *.tsbuildinfo
 rdm_binderhub_jlabextension/labextension
+# Version file is handled by hatchling
+rdm_binderhub_jlabextension/_version.py
 
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
@@ -56,14 +61,11 @@ htmlcov/
 .coverage.*
 .cache
 nosetests.xml
+coverage/
 coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
-
-# Translations
-*.mo
-rdm_binderhub_jlabextension/locale/ja_JP/LC_MESSAGES/rdm_binderhub_jlabextension.json
 
 # Scrapy stuff:
 .scrapy
@@ -111,4 +113,8 @@ dmypy.json
 # OSX files
 .DS_Store
 
-rdm_binderhub_jlabextension/nbextension/GRDM_logo_horizon.svg
+# Yarn cache
+.yarn/
+
+_temp_extension
+ui-tests/test-results/

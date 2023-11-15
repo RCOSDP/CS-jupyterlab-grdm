@@ -1,0 +1,14 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v4.2.1
+_src_path: https://github.com/jupyterlab/extension-template
+author_email: ''
+author_name: RCOSDP
+has_binder: true
+has_settings: false
+kind: server
+labextension_name: rdm-binderhub-jlabextension
+project_short_description: JupyterLab extension for GakuNin RDM.
+python_name: rdm_binderhub_jlabextension
+repository: https://github.com/RCOSDP/CS-jupyterlab-grdm.git
+test: false
+
