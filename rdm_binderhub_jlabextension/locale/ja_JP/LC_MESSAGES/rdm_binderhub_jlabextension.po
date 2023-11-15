@@ -29,7 +29,7 @@ msgstr ""
 #: src/index.ts:135 src/index.ts:136 src/index.ts:144 src/index.ts:162
 #: src/index.ts:163 src/index.ts:166
 msgid "Sync to RDM"
-msgstr "RDMと同期"
+msgstr "RDMへ同期"
 
 #: dist/rdm_binderhub_jlabextension-0.3.0/src/button.ts:35 src/button.ts:31
 #: src/button.ts:32 src/button.ts:35 src/button.ts:36 src/index.ts:38
@@ -60,7 +60,7 @@ msgstr "すでに同期中です"
 #: src/button.ts:59 src/button.ts:61 src/button.ts:80 src/button.ts:99
 #: src/button.ts:103 src/index.ts:35
 msgid "Sync to GakuNin RDM"
-msgstr "GakuNin RDMと同期"
+msgstr "GakuNin RDMへ同期"
 
 #: dist/rdm_binderhub_jlabextension-0.3.0/src/messages.tsx:11
 #: src/messages.tsx:5 src/messages.tsx:6 src/messages.tsx:11
